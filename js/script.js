@@ -9,6 +9,9 @@ const upgradeBtn = document
 
 game.start()
 
+document.addEventListener('keydown', (event) => {
+    game.player.getInput(event);
+})
 
 // startBtn.addEventListener('click', () => {
 //     titleScreen.style.display = 'none' 

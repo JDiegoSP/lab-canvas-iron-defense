@@ -9,8 +9,6 @@ class Game {
     this.arrowDefense = new ArrowDefense(ctx, this.enemy, this);
     this.intervalId = null;
 
-    this.towerAttack = 3;
-    this.gold = 40;
     this.counter = 0;
 
     // this.music = new Audio();
@@ -28,7 +26,7 @@ class Game {
       this.checkCollisions();
       this.counter++;
 
-      if (this.counter % 200 === 0) {
+      if (this.counter % 100 === 0) {
         this.addEnemy();
       }
     }, 1000 / 60);
@@ -42,18 +40,13 @@ class Game {
     });
     this.healthbar.draw();
     this.arrowDefense.draw();
-    this.drawGold();
-    this.drawTowerAttack();
-    if (this.gold % 50 === 0) {
-      this.drawUpgradeButton();
-    }
     //this.arrowDefense.clearArrows();
   }
 
   move() {
     // this.enemies.forEach((enemy) => {
     //   enemy.move();
-    // });
+    //  });
     // this.arrowDefense.move();
   }
 
@@ -63,7 +56,7 @@ class Game {
   }
 
   addEnemy() {
-    const newEnemy = new Enemy(this.ctx, this, 1000, 330);
+    const newEnemy = new Enemy(this.ctx, this, 1100, 330);
     this.enemies.push(newEnemy);
   }
 
@@ -73,7 +66,7 @@ class Game {
     });
     if (enemyArrowColliding && !this.arrowDefense.isHitting) {
       console.log("ARROW HITTING");
-      // console.log(`The enemy health is: ${enemies.health}`);
+      console.log(`Enemy health is: ${this.enemies.health}`)
       enemyArrowColliding.receiveDamage(this.arrowDefense.strength);
       this.arrowDefense.isHitting = true;
       this.arrowDefense.x = 200;
@@ -97,33 +90,6 @@ class Game {
         }
       }
     });
-  }
-
-  drawTowerAttack() {
-    this.ctx.font = "25px Arial";
-    this.ctx.fillStyle = "black";
-    this.ctx.fillText(`Tower Attack: ${this.towerAttack}`, 700, 50);
-  }
-
-  drawGold() {
-    this.ctx.font = "30px Arial";
-    this.ctx.fillStyle = "yellow";
-    this.ctx.fillText(`Gold: ${this.gold}`, 1100, 50);
-  }
-
-  drawUpgradeButton() {
-    this.ctx.fillStyle = "BROWN";
-    this.ctx.fillRect(70, 58, 210, 30);
-    this.ctx.strokeRect(70, 58, 210, 30);
-    this.ctx.font = "20px Arial";
-    this.ctx.fillStyle = "WHITE";
-    this.ctx.fillText("UPGRADE TOWER", 85, 80);
-  }
-
-  upgradeTower() {
-    //SI PRESIONO LA TECLA U
-    this.gold -= 50;
-    this.arrowDefense.strength += 1;
   }
 
   gameOver() {

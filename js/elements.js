@@ -12,12 +12,12 @@ class Healthbar {
     } else {
       this.ctx.fillStyle = "red";
     }
-    this.ctx.fillRect(70, 30, this.player.health * 20, 17);
-    this.ctx.strokeRect(70, 30, 20 * 20, 17);
+    this.ctx.fillRect(70, 20, this.player.health * 20, 17);
+    this.ctx.strokeRect(70, 20, 20 * 20, 17);
 
     this.ctx.font = "15px Arial";
     this.ctx.fillStyle = "white";
-    this.ctx.fillText(`20 / ${this.player.health}`, 250, 44);
+    this.ctx.fillText(`20 / ${this.player.health}`, 250, 34);
   }
 }
 
@@ -51,7 +51,7 @@ class ArrowDefense {
     this.width = 60;
     this.height = 60;
     this.speed = 8;
-    this.strength = 4;
+    this.strength = 10;
     (this.isHitting = false), (this.image = new Image());
     this.image.src = "images/arrow1.png";
     this.isReady = false;
