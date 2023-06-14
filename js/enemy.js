@@ -12,7 +12,7 @@ class Enemy {
     this.yFramesCount = 1;
     this.speed = 1;
     this.health = 20;
-    this.strength = 1;
+    this.strength = 2;
     this.isHitting = false;
 
     this.image = new Image();
@@ -51,9 +51,6 @@ class Enemy {
     }
 
     this.x -= this.speed;
-    // if (this.x <= 180) {
-    //   this.x = 160;
-    // }
   }
 
   attack() {
@@ -70,10 +67,4 @@ class Enemy {
     const collideY = player.y <= this.y && player.y + player.height >= this.y;
     return collideX && collideY;
   }
-
-  // collideAttack(arrowDefense) {
-  //   const collideX = arrowDefense.x + 138 >= this.x && arrowDefense.x + 70 <= this.x + this.width;
-  //   const collideY = arrowDefense.y /* + 24 */ <= this.y + 62 && arrowDefense.y + arrowDefense.height >= this.y;
-  //   return collideX && collideY;
-  // }
 }

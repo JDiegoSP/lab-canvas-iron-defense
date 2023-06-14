@@ -2,11 +2,10 @@ class Game {
   constructor(ctx) {
     this.ctx = ctx;
     this.background = new Background(ctx);
-    this.player = new Player(ctx, 30, 150);
-    //this.enemy = new Enemy(ctx, this.player, this);
+    this.arrowDefense = new ArrowDefense(ctx);
+    this.player = new Player(ctx, 30, 150, 90, this.arrowDefense);
     this.enemies = [];
     this.healthbar = new Healthbar(this.ctx, this.player);
-    this.arrowDefense = new ArrowDefense(ctx, this.enemy, this);
     this.intervalId = null;
 
     this.counter = 0;
@@ -26,21 +25,15 @@ class Game {
       this.checkCollisions();
       this.counter++;
 
-      if (this.counter % 100 === 0) {
+      if (this.counter % 150 === 0) {
         this.addEnemy();
       }
     }, 1000 / 60);
   }
 
-  draw() {
-    this.background.draw();
-    this.player.draw();
-    this.enemies.forEach((enemy) => {
-      enemy.draw();
-    });
-    this.healthbar.draw();
-    this.arrowDefense.draw();
-    //this.arrowDefense.clearArrows();
+  clear() {
+    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
+    this.enemies = this.enemies.filter((enemy) => enemy.health > 0);
   }
 
   move() {
@@ -50,13 +43,19 @@ class Game {
     // this.arrowDefense.move();
   }
 
-  clear() {
-    this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
-    //this.enemies = this.enemies.filter((newEnemy) => newEnemy.health <= 20);
+  draw() {
+    this.background.draw();
+    this.player.draw();
+    this.enemies.forEach((enemy) => {
+      enemy.draw();
+    });
+    this.healthbar.draw();
+    this.arrowDefense.startShooting(this.enemies);
+    this.arrowDefense.draw();
   }
 
   addEnemy() {
-    const newEnemy = new Enemy(this.ctx, this, 1100, 330);
+    const newEnemy = new Enemy(this.ctx, this, 1320, 330);
     this.enemies.push(newEnemy);
   }
 
@@ -65,15 +64,12 @@ class Game {
       return this.arrowDefense.collide(enemy);
     });
     if (enemyArrowColliding && !this.arrowDefense.isHitting) {
-      console.log("ARROW HITTING");
-      console.log(`Enemy health is: ${this.enemies.health}`)
       enemyArrowColliding.receiveDamage(this.arrowDefense.strength);
       this.arrowDefense.isHitting = true;
       this.arrowDefense.x = 200;
       setTimeout(() => {
         this.arrowDefense.isHitting = false;
       }, 500);
-
     }
 
     this.enemies.forEach((enemy) => {

@@ -42,16 +42,15 @@ class Healthbar {
 // }
 
 class ArrowDefense {
-  constructor(ctx, enemy) {
+  constructor(ctx) {
     this.ctx = ctx;
-    this.enemy = enemy;
-    //this.arrows = [];
     this.x = 200;
     this.y = 400;
     this.width = 60;
     this.height = 60;
     this.speed = 8;
-    this.strength = 10;
+    this.strength = 5;
+    this.shooting = false;
     (this.isHitting = false), (this.image = new Image());
     this.image.src = "images/arrow1.png";
     this.isReady = false;
@@ -61,16 +60,24 @@ class ArrowDefense {
   }
 
   draw() {
-    if (this.isReady) {
+    if (this.isReady && this.shooting) {
       this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
     }
   }
 
   move() {
-    this.x += this.speed;
+    if (this.shooting) {
+      this.x += this.speed;
 
-    if (this.x >= 1400) {
-      this.x = 200;
+      if (this.x >= 1400) {
+        this.x = 200;
+      }
+    }
+  }
+
+  startShooting(enemies) {
+    if (enemies.some((enemy) => enemy.x <= 1000)) {
+      this.shooting = true;
     }
   }
 

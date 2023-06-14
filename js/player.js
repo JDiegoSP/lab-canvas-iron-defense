@@ -1,6 +1,7 @@
 class Player {
-  constructor(ctx, x, y) {
+  constructor(ctx, x, y, gold, arrowDefense) {
     this.ctx = ctx;
+    this.arrowDefense = arrowDefense;
     this.x = x;
     this.y = y;
     
@@ -10,8 +11,8 @@ class Player {
     this.height = 450;
     this.health = 20;
 
-    this.gold = 90;
-    this.towerAttack = 4;
+    this.gold = gold;
+    this.strength = 5;
 
     this.isReady = false;
 
@@ -26,14 +27,10 @@ class Player {
     }
     this.drawGold();
     this.drawTowerAttack();
-    if (this.gold >= 50) {
+    if (this.gold >= 100) {
       this.drawUpgradeButton();
     }
   }
-
-  // attack() {
-  //   return this.strength;
-  // }
 
   receiveDamage(damage) {
     this.health -= damage;
@@ -42,7 +39,7 @@ class Player {
   drawTowerAttack() {
     this.ctx.font = "25px Arial";
     this.ctx.fillStyle = "black";
-    this.ctx.fillText(`Tower Attack: ${this.towerAttack}`, 700, 50);
+    this.ctx.fillText(`Tower Attack: ${this.strength}`, 700, 50);
   }
 
   drawGold() {
@@ -72,9 +69,10 @@ class Player {
   }
 
   upgrade() {
-    if (this.gold >= 50) {
+    if (this.gold >= 100) {
       this.gold -= 50;
-      this.towerAttack += 1;
+      this.strength += 2;
+      this.arrowDefense.strength = this.strength;
     }
   }
 }
