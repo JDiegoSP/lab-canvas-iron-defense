@@ -3,12 +3,13 @@ class Game {
     this.ctx = ctx;
     this.background = new Background(ctx);
     this.arrowDefense = new ArrowDefense(ctx);
-    this.player = new Player(ctx, 30, 150, 90, this.arrowDefense);
+    this.player = new Player(ctx, 30, 150, 50, this.arrowDefense);
     this.enemies = [];
     this.healthbar = new Healthbar(this.ctx, this.player);
     this.intervalId = null;
 
     this.counter = 0;
+    this.score = 0;
 
     // this.music = new Audio();
     // this.music.src = 'audio/background_music.mp3';
@@ -25,9 +26,11 @@ class Game {
       this.checkCollisions();
       this.counter++;
 
-      if (this.counter % 150 === 0) {
+      if (this.counter % 150 === 0 && this.score < 3) {
         this.addEnemy();
       }
+
+      //this.enemyDead();
     }, 1000 / 60);
   }
 
@@ -37,10 +40,10 @@ class Game {
   }
 
   move() {
-    // this.enemies.forEach((enemy) => {
-    //   enemy.move();
-    //  });
-    // this.arrowDefense.move();
+    this.enemies.forEach((enemy) => {
+      enemy.move();
+    });
+    this.arrowDefense.move();
   }
 
   draw() {
@@ -55,8 +58,12 @@ class Game {
   }
 
   addEnemy() {
-    const newEnemy = new Enemy(this.ctx, this, 1320, 330);
+    const newEnemy = new Enemy(this.ctx, this, 1320, 330, 20);
     this.enemies.push(newEnemy);
+  }
+
+  enemyDead() {
+    this.player.gold += 10;
   }
 
   checkCollisions() {

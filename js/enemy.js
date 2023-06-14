@@ -1,9 +1,10 @@
 class Enemy {
-  constructor(ctx, game, x, y) {
+  constructor(ctx, game, x, y, health) {
     this.ctx = ctx;
     this.game = game;
     this.x = x;
     this.y = y;
+    this.health = health;
     this.width = 300;
     this.height = 200;
     this.xFrame = 0;
@@ -11,8 +12,7 @@ class Enemy {
     this.xFramesCount = 10;
     this.yFramesCount = 1;
     this.speed = 1;
-    this.health = 20;
-    this.strength = 2;
+    this.strength = 1;
     this.isHitting = false;
 
     this.image = new Image();
@@ -59,10 +59,13 @@ class Enemy {
 
   receiveDamage(damage) {
     this.health -= damage;
+    if (this.health <= 0) {
+      this.game.score ++;
+      this.game.enemyDead();
+    }
   }
 
   collide(player) {
-    // const collideX = player.x >= this.x && player.x <= this.x + this.width;
     const collideX = player.x + player.width - 160 >= this.x;
     const collideY = player.y <= this.y && player.y + player.height >= this.y;
     return collideX && collideY;

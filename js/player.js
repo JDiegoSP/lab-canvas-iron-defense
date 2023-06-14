@@ -4,7 +4,7 @@ class Player {
     this.arrowDefense = arrowDefense;
     this.x = x;
     this.y = y;
-    
+
     this.image = new Image();
     this.image.src = "images/tower_1.png";
     this.width = 320;
@@ -27,7 +27,7 @@ class Player {
     }
     this.drawGold();
     this.drawTowerAttack();
-    if (this.gold >= 100) {
+    if (this.gold >= 50) {
       this.drawUpgradeButton();
     }
   }
@@ -60,8 +60,8 @@ class Player {
   getInput(event) {
     if (!event.repeat) {
       switch (event.key) {
-        case 'U':
-        case 'u':
+        case "U":
+        case "u":
           this.upgrade();
           break;
       }
@@ -69,7 +69,7 @@ class Player {
   }
 
   upgrade() {
-    if (this.gold >= 100) {
+    if (this.gold >= 50) {
       this.gold -= 50;
       this.strength += 2;
       this.arrowDefense.strength = this.strength;

@@ -48,7 +48,7 @@ class ArrowDefense {
     this.y = 400;
     this.width = 60;
     this.height = 60;
-    this.speed = 8;
+    this.speed = 12;
     this.strength = 5;
     this.shooting = false;
     (this.isHitting = false), (this.image = new Image());
@@ -76,7 +76,7 @@ class ArrowDefense {
   }
 
   startShooting(enemies) {
-    if (enemies.some((enemy) => enemy.x <= 1000)) {
+    if (enemies.some((enemy) => enemy.x <= 1100)) {
       this.shooting = true;
     }
   }
