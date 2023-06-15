@@ -17,7 +17,7 @@ class Healthbar {
 
     this.ctx.font = "15px Arial";
     this.ctx.fillStyle = "white";
-    this.ctx.fillText(`20 / ${this.player.health}`, 250, 34);
+    this.ctx.fillText(`${this.player.health} / 20`, 250, 34);
   }
 }
 
@@ -44,10 +44,10 @@ class Healthbar {
 class ArrowDefense {
   constructor(ctx) {
     this.ctx = ctx;
-    this.x = 200;
+    this.x = 220;
     this.y = 400;
     this.width = 60;
-    this.height = 60;
+    this.height = 20;
     this.speed = 12;
     this.strength = 5;
     this.shooting = false;
@@ -76,8 +76,10 @@ class ArrowDefense {
   }
 
   startShooting(enemies) {
-    if (enemies.some((enemy) => enemy.x <= 1100)) {
+    if (enemies.some((enemy) => enemy.x <= 1150)) {
       this.shooting = true;
+    } else {
+      this.shooting = false;
     }
   }
 
@@ -86,7 +88,7 @@ class ArrowDefense {
   }
 
   collide(enemy) {
-    const collideX = enemy.x <= this.x + this.width - 125;
+    const collideX = enemy.x <= this.x + this.width - 80;
     const collideY = enemy.y <= this.y && enemy.y + enemy.height >= this.y;
     return collideX && collideY;
   }

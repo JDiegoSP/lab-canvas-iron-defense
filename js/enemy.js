@@ -60,13 +60,13 @@ class Enemy {
   receiveDamage(damage) {
     this.health -= damage;
     if (this.health <= 0) {
-      this.game.score ++;
+      this.game.score++;
       this.game.enemyDead();
     }
   }
 
   collide(player) {
-    const collideX = player.x + player.width - 160 >= this.x;
+    const collideX = player.x + player.width - 105 >= this.x;
     const collideY = player.y <= this.y && player.y + player.height >= this.y;
     return collideX && collideY;
   }

@@ -3,8 +3,21 @@ class Game {
     this.ctx = ctx;
     this.background = new Background(ctx);
     this.arrowDefense = new ArrowDefense(ctx);
-    this.player = new Player(ctx, 30, 150, 50, this.arrowDefense);
-    this.enemies = [];
+    this.player = new Player(ctx, 60, 222, 50, this.arrowDefense);
+    this.enemies = [
+      new Enemy(this.ctx, this, 1350, 330, 20),
+      new Enemy(this.ctx, this, 1850, 330, 20),
+      new Enemy(this.ctx, this, 2350, 330, 20),
+      new Enemy(this.ctx, this, 2850, 330, 20),
+      new Enemy(this.ctx, this, 3350, 330, 20),
+      new Enemy(this.ctx, this, 3850, 330, 20),
+      new Enemy(this.ctx, this, 4350, 330, 20),
+      new Enemy(this.ctx, this, 4850, 330, 20),
+      new Enemy(this.ctx, this, 5350, 330, 20),
+      new Enemy(this.ctx, this, 5850, 330, 20),
+
+
+    ];
     this.healthbar = new Healthbar(this.ctx, this.player);
     this.intervalId = null;
 
@@ -26,9 +39,9 @@ class Game {
       this.checkCollisions();
       this.counter++;
 
-      if (this.counter % 150 === 0 && this.score < 3) {
-        this.addEnemy();
-      }
+      // if (this.counter % 150 === 0 && this.score < 3) {
+      //   this.addEnemy();
+      // }
 
       //this.enemyDead();
     }, 1000 / 60);
@@ -40,10 +53,10 @@ class Game {
   }
 
   move() {
-    this.enemies.forEach((enemy) => {
-      enemy.move();
-    });
-    this.arrowDefense.move();
+  //   this.enemies.forEach((enemy) => {
+  //     enemy.move();
+  //   });
+  //   this.arrowDefense.move();
   }
 
   draw() {
@@ -57,13 +70,13 @@ class Game {
     this.arrowDefense.draw();
   }
 
-  addEnemy() {
-    const newEnemy = new Enemy(this.ctx, this, 1320, 330, 20);
-    this.enemies.push(newEnemy);
-  }
+  // addEnemy() {
+  //   const newEnemy = new Enemy(this.ctx, this, 1200, 330, 20);
+  //   this.enemies.push(newEnemy);
+  // }
 
   enemyDead() {
-    this.player.gold += 10;
+    this.player.gold += 15;
   }
 
   checkCollisions() {

@@ -7,8 +7,8 @@ class Player {
 
     this.image = new Image();
     this.image.src = "images/tower_1.png";
-    this.width = 320;
-    this.height = 450;
+    this.width = 220;
+    this.height = 300;
     this.health = 20;
 
     this.gold = gold;
@@ -39,13 +39,13 @@ class Player {
   drawTowerAttack() {
     this.ctx.font = "25px Arial";
     this.ctx.fillStyle = "black";
-    this.ctx.fillText(`Tower Attack: ${this.strength}`, 700, 50);
+    this.ctx.fillText(`Tower Attack: ${this.strength}`, 700, 40);
   }
 
   drawGold() {
     this.ctx.font = "30px Arial";
     this.ctx.fillStyle = "yellow";
-    this.ctx.fillText(`Gold: ${this.gold}`, 1100, 50);
+    this.ctx.fillText(`Gold: ${this.gold}`, 1100, 40);
   }
 
   drawUpgradeButton() {
@@ -71,7 +71,7 @@ class Player {
   upgrade() {
     if (this.gold >= 50) {
       this.gold -= 50;
-      this.strength += 2;
+      this.strength += 1;
       this.arrowDefense.strength = this.strength;
     }
   }
