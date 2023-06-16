@@ -16,7 +16,16 @@ class Game {
       new Enemy(this.ctx, this, 5350, 330, 20),
       new Enemy(this.ctx, this, 5850, 330, 20),
 
-
+      new Enemy(this.ctx, this, 1350, 330, 20),
+      new Enemy(this.ctx, this, 1850, 330, 20),
+      new Enemy(this.ctx, this, 2350, 330, 20),
+      new Enemy(this.ctx, this, 2850, 330, 20),
+      new Enemy(this.ctx, this, 3350, 330, 20),
+      new Enemy(this.ctx, this, 3850, 330, 20),
+      new Enemy(this.ctx, this, 4350, 330, 20),
+      new Enemy(this.ctx, this, 4850, 330, 20),
+      new Enemy(this.ctx, this, 5350, 330, 20),
+      new Enemy(this.ctx, this, 5850, 330, 20),
     ];
     this.healthbar = new Healthbar(this.ctx, this.player);
     this.intervalId = null;

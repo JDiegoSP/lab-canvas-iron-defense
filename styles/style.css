@@ -10,20 +10,25 @@ html {
   align-items: center;
 }
 
-.title {
-    position: fixed;
-    width: 1400px;
-    height: 550px;
-    background-color: #3028cf;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+.titleScreen {
+  background-image: url("/images/initial_menu.png");
+  border: 5px solid #84853d;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 1400px;
+  height: 600px;
+  position: absolute;
 }
 
-img {
-    width: 1400px;
-    height: 490px;
+.gameTitle-btn {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: Transparent;
+  font-size: 70px;
+  font-weight: bold;
+  color: black;
+  border: 7px solid #84853d;
+  margin-left: 425px;
+  margin-top: 80px;
 }
 
 .start-btn {
@@ -37,7 +42,20 @@ img {
     color: black;
     background-color: #84853d;
     border: none;
+    margin-left: 600px;
+    margin-top: 200px;
 }
+
+.start-btn:hover {
+  outline-color: transparent;
+  outline-style:solid;
+  box-shadow: 0 0 0 4px #0d2dbd;
+}
+
+/* img {
+    width: 1400px;
+    height: 490px;
+} */
 
 /* #my-canvas {
     border: 3px solid brown;

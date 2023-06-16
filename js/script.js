@@ -5,15 +5,13 @@ const game = new Game(ctx);
 
 const upgradeBtn = document
 
-//const startBtn = document.getElementById('startBtn')
-//const titleScreen = document.getElementById('titleScreen')
+const startBtn = document.getElementById('startBtn')
+const titleScreen = document.getElementById('titleScreen')
 
-game.start()
-
-// startBtn.addEventListener('click', () => {
-//     titleScreen.style.display = 'none'
-    
-// })
+startBtn.addEventListener('click', () => {
+    titleScreen.style.display = 'none'
+    game.start();
+})
 
 document.addEventListener('keydown', (event) => {
     game.player.getInput(event);
