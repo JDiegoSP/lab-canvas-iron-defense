@@ -1,7 +1,7 @@
 const canvas = document.querySelector('#my-canvas');
 const ctx = canvas.getContext('2d');
 const game = new Game(ctx);
-const audio = game.audio;
+//const audio = game.audio;
 
 const upgradeBtn = document;
 

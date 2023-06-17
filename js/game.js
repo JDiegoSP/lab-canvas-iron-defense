@@ -3,7 +3,7 @@ class Game {
     this.ctx = ctx;
     this.background = new Background(ctx);
     this.arrowDefense = new ArrowDefense(ctx);
-    this.player = new Player(ctx, 60, 222, 50, this.arrowDefense);
+    this.player = new Player(ctx, 60, 222, 450, this.arrowDefense);
     this.enemies = [
       new Enemy(this.ctx, this, 1450, 330, 20),
       new Enemy(this.ctx, this, 1850, 330, 20),
@@ -47,7 +47,6 @@ class Game {
   start() {
     this.intervalId = setInterval(() => {
       this.clear();
-
       this.move();
       this.draw();
       this.youWin();
@@ -91,7 +90,7 @@ class Game {
   // }
 
   enemyDead() {
-    this.player.gold += 500;
+    this.player.gold += 15;
     this.enemyDeadSound.play();
   }
 
@@ -110,6 +109,7 @@ class Game {
 
     this.enemies.forEach((enemy) => {
       if (enemy.collide(this.player) && !enemy.isHitting) {
+        console.log("RECEIVE DAMAGE");
         this.player.receiveDamage(enemy.strength);
         enemy.isHitting = true;
         enemy.speed = 0;
@@ -159,7 +159,7 @@ class Game {
     this.ctx.textAlign = "center";
     this.ctx.fillText(
       "Victory!",
-      this.ctx.canvas.width / 2,
+      this.ctx.canvas.width / 2 + 20,
       this.ctx.canvas.height / 2 - 50
     );
     this.ctx.font = "50px pixelFont";
@@ -167,7 +167,7 @@ class Game {
     this.ctx.textAlign = "center";
     this.ctx.fillText(
       "Press F5 to Restart",
-      this.ctx.canvas.width / 2,
+      this.ctx.canvas.width / 2 + 20,
       this.ctx.canvas.height / 2 + 30
     );
     this.music.volume = 0;

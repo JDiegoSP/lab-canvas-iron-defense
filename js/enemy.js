@@ -11,7 +11,7 @@ class Enemy {
     this.yFrame = 0;
     this.xFramesCount = 10;
     this.yFramesCount = 1;
-    this.speed = 1;
+    this.speed = 2;
     this.strength = 1;
     this.isHitting = false;
 
@@ -23,7 +23,7 @@ class Enemy {
     };
 
     this.arrowSound = new Audio();
-    this.arrowSound.src = 'audio/arrow_impact.mp3';
+    this.arrowSound.src = "audio/arrow_impact.mp3";
     this.arrowSound.volume = 0.2;
   }
 

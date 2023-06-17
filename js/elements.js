@@ -24,17 +24,17 @@ class Healthbar {
       this.player.strength >= 7 &&
       this.player.strength < 9
     ) {
-      this.ctx.fillRect(70, 20, this.player.health * 22, 17);
-      this.ctx.strokeRect(70, 20, 20 * 22, 17);
+      this.ctx.fillRect(70, 20, this.player.health * 20, 17);
+      this.ctx.strokeRect(70, 20, 22 * 20, 17);
       this.ctx.font = "15px Arial";
       this.ctx.fillStyle = "white";
-      this.ctx.fillText(`${this.player.health} / 22`, 260, 34);
+      this.ctx.fillText(`${this.player.health} / 22`, 270, 34);
     } else {
-      this.ctx.fillRect(70, 20, this.player.health * 25, 17);
-      this.ctx.strokeRect(70, 20, 20 * 25, 17);
+      this.ctx.fillRect(70, 20, this.player.health * 20, 17);
+      this.ctx.strokeRect(70, 20, 25 * 20, 17);
       this.ctx.font = "15px Arial";
       this.ctx.fillStyle = "white";
-      this.ctx.fillText(`${this.player.health} / 25`, 275, 34);
+      this.ctx.fillText(`${this.player.health} / 25`, 300, 34);
     }
   }
 }
@@ -66,8 +66,8 @@ class ArrowDefense {
     this.y = 400;
     this.width = 60;
     this.height = 20;
-    this.speed = 8;
-    this.strength = 10;
+    this.speed = 0;
+    this.strength = 5;
     this.shooting = false;
     (this.isHitting = false), (this.image = new Image());
     this.image.src = "images/arrow1.png";
@@ -81,7 +81,7 @@ class ArrowDefense {
     if (this.shooting) {
       if (this.isReady && this.shooting && this.strength < 7) {
         this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-        this.speed = 9;
+        this.speed = 8;
       } else if (
         this.isReady &&
         this.shooting &&
@@ -92,7 +92,7 @@ class ArrowDefense {
         this.speed = 11;
       } else {
         this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-        this.speed = 14;
+        this.speed = 16;
       }
     }
   }
@@ -120,7 +120,7 @@ class ArrowDefense {
   }
 
   collide(enemy) {
-    const collideX = enemy.x <= this.x + this.width - 80;
+    const collideX = enemy.x <= this.x + this.width - 120;
     const collideY = enemy.y <= this.y && enemy.y + enemy.height >= this.y;
     return collideX && collideY;
   }

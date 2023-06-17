@@ -4,14 +4,14 @@ class Player {
     this.arrowDefense = arrowDefense;
     this.x = x;
     this.y = y;
-    // this.imageA.x = 80;
-    // this.imageA.y = 250;
 
     this.image = new Image();
     this.image.src = "images/tower_1.png";
     this.width = 220;
     this.height = 300;
     this.health = 20;
+    // this.health2 = 22;
+    // this.health3 = 25;
 
     this.imageA = new Image();
     this.imageA.src = "images/archer.png";
@@ -40,24 +40,42 @@ class Player {
     };
 
     this.upgradeSound = new Audio();
-    this.upgradeSound.src = 'audio/warcry.mp3';
+    this.upgradeSound.src = "audio/warcry.mp3";
     this.upgradeSound.volume = 0.35;
 
     this.receiveDamageSound = new Audio();
-    this.receiveDamageSound.src = 'audio/enemy_attack.mp3';
+    this.receiveDamageSound.src = "audio/enemy_attack.mp3";
     this.receiveDamageSound.volume = 0.3;
   }
 
   draw() {
     if (this.isReady && this.strength < 7) {
       this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-      this.ctx.drawImage(this.imageA, 140, 370, this.imageA.width, this.imageA.height);
-    } else if (this.isReady && this.strength  >= 7 && this.strength < 9) {
+      this.ctx.drawImage(
+        this.imageA,
+        140,
+        380,
+        this.imageA.width,
+        this.imageA.height
+      );
+    } else if (this.isReady && this.strength >= 7 && this.strength < 9) {
       this.ctx.drawImage(this.image2, this.x, this.y, this.width, this.height);
-      this.ctx.drawImage(this.imageA, 140, 370, this.imageA.width, this.imageA.height);
+      this.ctx.drawImage(
+        this.imageA,
+        140,
+        380,
+        this.imageA.width,
+        this.imageA.height
+      );
     } else {
       this.ctx.drawImage(this.image3, this.x, this.y, this.width, this.height);
-      this.ctx.drawImage(this.imageA, 140, 370, this.imageA.width, this.imageA.height);
+      this.ctx.drawImage(
+        this.imageA,
+        140,
+        380,
+        this.imageA.width,
+        this.imageA.height
+      );
     }
     this.drawGold();
     this.drawTowerAttack();
@@ -109,6 +127,11 @@ class Player {
       this.gold -= 50;
       this.strength += 1;
       this.arrowDefense.strength = this.strength;
+    }
+    if (this.arrowDefense.strength === 7) {
+      this.health += 2;
+    } else if (this.arrowDefense.strength === 9) {
+      this.health += 3;
     }
   }
 }
