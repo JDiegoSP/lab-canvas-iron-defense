@@ -3,18 +3,18 @@ class Game {
     this.ctx = ctx;
     this.background = new Background(ctx);
     this.arrowDefense = new ArrowDefense(ctx);
-    this.player = new Player(ctx, 60, 222, 450, this.arrowDefense);
+    this.player = new Player(ctx, 60, 222, 65, this.arrowDefense);
     this.enemies = [
-      new Enemy(this.ctx, this, 1450, 330, 20, 300, 200, "images/ork_1.png"),
-      new Enemy(this.ctx, this, 1850, 330, 20, 300, 200, "images/ork_1.png"),
-      new Enemy(this.ctx, this, 2350, 330, 20, 300, 200, "images/ork_1.png"),
-      new Enemy(this.ctx, this, 2850, 330, 20, 300, 200, "images/ork_1.png"),
-      new Enemy(this.ctx, this, 3350, 300, 26, 320, 250, "images/troll_1.png"),
-      // new Enemy(this.ctx, this, 3850, 330, 20, "images/ork_1.png"),
-      // new Enemy(this.ctx, this, 4350, 330, 20, "images/ork_1.png"),
-      // new Enemy(this.ctx, this, 4850, 330, 20, "images/ork_1.png"),
-      // new Enemy(this.ctx, this, 5350, 330, 20, "images/ork_1.png"),
-      // new Enemy(this.ctx, this, 5850, 330, 20, "images/troll_1.png"),
+      new Enemy(this.ctx, this, 1450, 330, 20, 300, 200, 1, "images/ork_1.png"),
+      new Enemy(this.ctx, this, 1850, 330, 20, 300, 200, 1.2, "images/ork_1.png"),
+      new Enemy(this.ctx, this, 2350, 330, 20, 300, 200, 0.9, "images/ork_1.png"),
+      new Enemy(this.ctx, this, 2850, 330, 20, 300, 200, 1, "images/ork_1.png"),
+      new Enemy(this.ctx, this, 3350, 295, 26, 320, 250, 1.5, "images/troll_1.png"),
+      new Enemy(this.ctx, this, 3850, 330, 20, 300, 200, 1, "images/ork_1.png"),
+      new Enemy(this.ctx, this, 4350, 330, 20, 300, 200, 1.2, "images/ork_1.png"),
+      new Enemy(this.ctx, this, 4850, 330, 20, 300, 200, 0.9, "images/ork_1.png"),
+      new Enemy(this.ctx, this, 5350, 330, 20, 300, 200, 1, "images/ork_1.png"),
+      new Enemy(this.ctx, this, 5850, 295, 20, 320, 250, 1.7, "images/troll_1.png"),
 
       // new Enemy(this.ctx, this, 6850, 330, 20),
       // new Enemy(this.ctx, this, 7350, 330, 20),
@@ -36,7 +36,7 @@ class Game {
     this.music = new Audio();
     this.music.src = "audio/background_music.mp3";
     this.music.loop = true;
-    this.music.volume = 0.3;
+    this.music.volume = 0.4;
     this.music.play();
 
     this.enemyDeadSound = new Audio();
@@ -117,6 +117,7 @@ class Game {
           enemy.isHitting = false;
         }, 1000);
         if (this.player.health <= 0) {
+          restartBtn.style.display = 'block'
           this.gameOver();
         }
       }
@@ -126,27 +127,20 @@ class Game {
   gameOver() {
     clearInterval(this.intervalId);
     this.intervalId = null;
-    this.ctx.font = "140px pixelFont";
-    this.ctx.fillStyle = "brown";
+    this.ctx.font = "120px pixelFont";
+    this.ctx.fillStyle = "#84853d";
     this.ctx.textAlign = "center";
     this.ctx.fillText(
       "Game Over",
-      this.ctx.canvas.width / 2,
+      this.ctx.canvas.width / 2 + 30,
       this.ctx.canvas.height / 2 - 50
-    );
-    this.ctx.font = "50px pixelFont";
-    this.ctx.fillStyle = "brown";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText(
-      "Press F5 to Restart",
-      this.ctx.canvas.width / 2,
-      this.ctx.canvas.height / 2 + 30
     );
     this.music.volume = 0;
   }
 
   youWin() {
     if (this.enemies.every((enemy) => enemy.health <= 0)) {
+      restartBtn.style.display = 'block'
       this.endGame();
     }
   }
@@ -154,22 +148,14 @@ class Game {
   endGame() {
     clearInterval(this.intervalId);
     this.intervalId = null;
-    this.ctx.font = "130px pixelFont";
+    this.ctx.font = "100px pixelFont";
     this.ctx.fillStyle = "#84853d";
     this.ctx.textAlign = "center";
     this.ctx.fillText(
       "Victory!",
-      this.ctx.canvas.width / 2 + 20,
+      this.ctx.canvas.width / 2 + 30,
       this.ctx.canvas.height / 2 - 50
     );
-    this.ctx.font = "50px pixelFont";
-    this.ctx.fillStyle = "#84853d";
-    this.ctx.textAlign = "center";
-    this.ctx.fillText(
-      "Press F5 to Restart",
-      this.ctx.canvas.width / 2 + 20,
-      this.ctx.canvas.height / 2 + 30
-    );
-    this.music.volume = 0;
+    //this.music.volume = 0;
   }
 }

@@ -23,7 +23,7 @@ html {
 .gameTitle-btn {
   font-family: Arial, Helvetica, sans-serif;
   background-color: Transparent;
-  font-size: 70px;
+  font-size: 75px;
   font-weight: bold;
   color: black;
   border: 7px solid #84853d;
@@ -32,22 +32,45 @@ html {
 }
 
 .start-btn {
-    font-family: Arial, Helvetica, sans-serif;
-    border-radius: 10px;
-    font-size: 24px;
-    font-weight: bold;
-    width: 220px;
-    margin: 5px;
-    padding: 10px 5px;
-    color: black;
-    background-color: #84853d;
-    border: none;
-    margin-left: 600px;
-    margin-top: 200px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 10px;
+  font-size: 24px;
+  font-weight: bold;
+  width: 220px;
+  margin: 5px;
+  padding: 10px 5px;
+  color: black;
+  background-color: #84853d;
+  border: none;
+  margin-left: 600px;
+  margin-top: 200px;
 }
 
 .start-btn:hover {
   outline-color: transparent;
-  outline-style:solid;
+  outline-style: solid;
+  box-shadow: 0 0 0 4px #0d2dbd;
+}
+
+.restart-btn {
+  font-family: Arial, Helvetica, sans-serif;
+  border-radius: 10px;
+  display: none;
+  top: 300px;
+  left: 630px;
+  position: absolute;
+  font-size: 24px;
+  font-weight: bold;
+  width: 220px;
+  margin: 5px;
+  padding: 10px 5px;
+  color: black;
+  background-color: #84853d;
+  border: none;
+}
+
+.restart-btn:hover {
+  outline-color: transparent;
+  outline-style: solid;
   box-shadow: 0 0 0 4px #0d2dbd;
 }

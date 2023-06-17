@@ -6,7 +6,7 @@ const game = new Game(ctx);
 const upgradeBtn = document;
 
 const startBtn = document.getElementById('startBtn')
-// const restartBtn = document.getElementById('restartBtn')
+const restartBtn = document.getElementById('restartBtn')
 const titleScreen = document.getElementById('titleScreen')
 
 startBtn.addEventListener('click', () => {
@@ -18,7 +18,7 @@ document.addEventListener('keydown', (event) => {
     game.player.getInput(event);
 })
 
-// restartBtn.addEventListener('click', () => {
-//     restartBtn.style.display = 'none';
-// })
+restartBtn.addEventListener('click', () => {
+    restartBtn.style.display = 'none';
+})
 

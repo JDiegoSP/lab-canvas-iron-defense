@@ -63,7 +63,7 @@ class ArrowDefense {
   constructor(ctx) {
     this.ctx = ctx;
     this.x = 180;
-    this.y = 400;
+    this.y = 410;
     this.width = 60;
     this.height = 20;
     this.speed = 0;

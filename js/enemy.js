@@ -1,5 +1,5 @@
 class Enemy {
-  constructor(ctx, game, x, y, health, width, height, imagesrc) {
+  constructor(ctx, game, x, y, health, width, height, speed, imagesrc) {
     this.ctx = ctx;
     this.game = game;
     this.x = x;
@@ -13,7 +13,7 @@ class Enemy {
     this.yFrame = 0;
     this.xFramesCount = 10;
     this.yFramesCount = 1;
-    this.speed = 1;
+    this.speed = speed;
     this.strength = 1;
     this.isHitting = false;
 
