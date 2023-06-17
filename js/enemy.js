@@ -1,22 +1,24 @@
 class Enemy {
-  constructor(ctx, game, x, y, health) {
+  constructor(ctx, game, x, y, health, width, height, imagesrc) {
     this.ctx = ctx;
     this.game = game;
     this.x = x;
     this.y = y;
     this.health = health;
-    this.width = 300;
-    this.height = 200;
+    this.width = width;
+    this.height = height;
+    // this.width = 300;
+    // this.height = 200;
     this.xFrame = 0;
     this.yFrame = 0;
     this.xFramesCount = 10;
     this.yFramesCount = 1;
-    this.speed = 2;
+    this.speed = 1;
     this.strength = 1;
     this.isHitting = false;
 
     this.image = new Image();
-    this.image.src = "images/ork1.png";
+    this.image.src = imagesrc;
     this.isReady = false;
     this.image.onload = () => {
       this.isReady = true;
@@ -30,8 +32,8 @@ class Enemy {
   draw() {
     if (this.isReady) {
       this.ctx.fillStyle = "green";
-      this.ctx.fillRect(this.x + 100, this.y + 60, (this.health * 20) / 5, 7);
-      this.ctx.strokeRect(this.x + 100, this.y + 60, (20 * 20) / 5, 7);
+      this.ctx.fillRect(this.x + 100, this.y + 70, (this.health * 20) / 5, 7);
+      this.ctx.strokeRect(this.x + 100, this.y + 70, (this.health * 20) / 5, 7);
       this.ctx.drawImage(
         this.image,
         (this.xFrame * this.image.width) / this.xFramesCount,
