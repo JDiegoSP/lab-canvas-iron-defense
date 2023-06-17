@@ -4,12 +4,19 @@ class Player {
     this.arrowDefense = arrowDefense;
     this.x = x;
     this.y = y;
+    // this.imageA.x = 80;
+    // this.imageA.y = 250;
 
     this.image = new Image();
     this.image.src = "images/tower_1.png";
     this.width = 220;
     this.height = 300;
     this.health = 20;
+
+    this.imageA = new Image();
+    this.imageA.src = "images/archer.png";
+    this.imageA.width = 70;
+    this.imageA.height = 90;
 
     this.image2 = new Image();
     this.image2.src = "images/tower_2.png";
@@ -44,10 +51,13 @@ class Player {
   draw() {
     if (this.isReady && this.strength < 7) {
       this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+      this.ctx.drawImage(this.imageA, 140, 370, this.imageA.width, this.imageA.height);
     } else if (this.isReady && this.strength  >= 7 && this.strength < 9) {
       this.ctx.drawImage(this.image2, this.x, this.y, this.width, this.height);
+      this.ctx.drawImage(this.imageA, 140, 370, this.imageA.width, this.imageA.height);
     } else {
       this.ctx.drawImage(this.image3, this.x, this.y, this.width, this.height);
+      this.ctx.drawImage(this.imageA, 140, 370, this.imageA.width, this.imageA.height);
     }
     this.drawGold();
     this.drawTowerAttack();

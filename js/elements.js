@@ -19,7 +19,11 @@ class Healthbar {
       this.ctx.font = "15px Arial";
       this.ctx.fillStyle = "white";
       this.ctx.fillText(`${this.player.health} / 20`, 250, 34);
-    } else if (this.player.isReady && this.player.strength >= 7 && this.player.strength < 9) {
+    } else if (
+      this.player.isReady &&
+      this.player.strength >= 7 &&
+      this.player.strength < 9
+    ) {
       this.ctx.fillRect(70, 20, this.player.health * 22, 17);
       this.ctx.strokeRect(70, 20, 20 * 22, 17);
       this.ctx.font = "15px Arial";
@@ -58,12 +62,12 @@ class Healthbar {
 class ArrowDefense {
   constructor(ctx) {
     this.ctx = ctx;
-    this.x = 200;
+    this.x = 180;
     this.y = 400;
     this.width = 60;
     this.height = 20;
     this.speed = 8;
-    this.strength = 5;
+    this.strength = 10;
     this.shooting = false;
     (this.isHitting = false), (this.image = new Image());
     this.image.src = "images/arrow1.png";
@@ -74,15 +78,22 @@ class ArrowDefense {
   }
 
   draw() {
-    if (this.isReady && this.shooting && this.strength < 7) {
-      this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-      this.speed = 9;
-    } else if (this.isReady && this.shooting && this.strength >= 7 && this.strength < 9) {
-      this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-      this.speed = 11;
-    } else {
-      this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
-      this.speed = 14;
+    if (this.shooting) {
+      if (this.isReady && this.shooting && this.strength < 7) {
+        this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        this.speed = 9;
+      } else if (
+        this.isReady &&
+        this.shooting &&
+        this.strength >= 7 &&
+        this.strength < 9
+      ) {
+        this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        this.speed = 11;
+      } else {
+        this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+        this.speed = 14;
+      }
     }
   }
 

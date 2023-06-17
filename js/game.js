@@ -47,8 +47,10 @@ class Game {
   start() {
     this.intervalId = setInterval(() => {
       this.clear();
+
       this.move();
       this.draw();
+      this.youWin();
       this.checkCollisions();
       this.counter++;
 
@@ -89,7 +91,7 @@ class Game {
   // }
 
   enemyDead() {
-    this.player.gold += 15;
+    this.player.gold += 500;
     this.enemyDeadSound.play();
   }
 
@@ -100,7 +102,7 @@ class Game {
     if (enemyArrowColliding && !this.arrowDefense.isHitting) {
       enemyArrowColliding.receiveDamage(this.arrowDefense.strength);
       this.arrowDefense.isHitting = true;
-      this.arrowDefense.x = 200;
+      this.arrowDefense.x = 180;
       setTimeout(() => {
         this.arrowDefense.isHitting = false;
       }, 500);
@@ -143,15 +145,13 @@ class Game {
     this.music.volume = 0;
   }
 
-  // youWin() {
-  //   this.enemies.forEach((health) => {
-  //     if (this.enemies[3].health <= 20) {
-  //       this.endGame();
-  //     }
-  //   })
-  // }
+  youWin() {
+    if (this.enemies.every((enemy) => enemy.health <= 0)) {
+      this.endGame();
+    }
+  }
 
-  endGame() {    
+  endGame() {
     clearInterval(this.intervalId);
     this.intervalId = null;
     this.ctx.font = "130px pixelFont";

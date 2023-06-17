@@ -11,7 +11,7 @@ class Enemy {
     this.yFrame = 0;
     this.xFramesCount = 10;
     this.yFramesCount = 1;
-    this.speed = 1.5;
+    this.speed = 1;
     this.strength = 1;
     this.isHitting = false;
 
