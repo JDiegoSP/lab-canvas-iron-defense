@@ -11,6 +11,18 @@ class Player {
     this.height = 300;
     this.health = 20;
 
+    this.image2 = new Image();
+    this.image2.src = "images/tower_2.png";
+    this.width = 220;
+    this.height = 300;
+    this.health = 20;
+
+    this.image3 = new Image();
+    this.image3.src = "images/tower_3.png";
+    this.width = 220;
+    this.height = 300;
+    this.health = 20;
+
     this.gold = gold;
     this.strength = 5;
 
@@ -19,11 +31,23 @@ class Player {
     this.image.onload = () => {
       this.isReady = true;
     };
+
+    this.upgradeSound = new Audio();
+    this.upgradeSound.src = 'audio/warcry.mp3';
+    this.upgradeSound.volume = 0.35;
+
+    this.receiveDamageSound = new Audio();
+    this.receiveDamageSound.src = 'audio/enemy_attack.mp3';
+    this.receiveDamageSound.volume = 0.3;
   }
 
   draw() {
-    if (this.isReady) {
+    if (this.isReady && this.strength < 7) {
       this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
+    } else if (this.isReady && this.strength  >= 7 && this.strength < 9) {
+      this.ctx.drawImage(this.image2, this.x, this.y, this.width, this.height);
+    } else {
+      this.ctx.drawImage(this.image3, this.x, this.y, this.width, this.height);
     }
     this.drawGold();
     this.drawTowerAttack();
@@ -33,6 +57,7 @@ class Player {
   }
 
   receiveDamage(damage) {
+    this.receiveDamageSound.play();
     this.health -= damage;
   }
 
@@ -52,9 +77,9 @@ class Player {
     this.ctx.fillStyle = "BROWN";
     this.ctx.fillRect(70, 58, 210, 30);
     this.ctx.strokeRect(70, 58, 210, 30);
-    this.ctx.font = "20px Arial";
+    this.ctx.font = "18px Arial";
     this.ctx.fillStyle = "WHITE";
-    this.ctx.fillText("UPGRADE TOWER", 85, 80);
+    this.ctx.fillText("UPGRADE TOWER (U)", 80, 80);
   }
 
   getInput(event) {
@@ -69,6 +94,7 @@ class Player {
   }
 
   upgrade() {
+    this.upgradeSound.play();
     if (this.gold >= 50) {
       this.gold -= 50;
       this.strength += 1;

@@ -11,7 +11,7 @@ class Enemy {
     this.yFrame = 0;
     this.xFramesCount = 10;
     this.yFramesCount = 1;
-    this.speed = 1;
+    this.speed = 1.5;
     this.strength = 1;
     this.isHitting = false;
 
@@ -21,6 +21,10 @@ class Enemy {
     this.image.onload = () => {
       this.isReady = true;
     };
+
+    this.arrowSound = new Audio();
+    this.arrowSound.src = 'audio/arrow_impact.mp3';
+    this.arrowSound.volume = 0.2;
   }
 
   draw() {
@@ -58,6 +62,7 @@ class Enemy {
   }
 
   receiveDamage(damage) {
+    this.arrowSound.play();
     this.health -= damage;
     if (this.health <= 0) {
       this.game.score++;
