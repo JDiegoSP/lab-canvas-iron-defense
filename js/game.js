@@ -9,23 +9,23 @@ class Game {
       new Enemy(this.ctx, this, 1850, 330, 20, 300, 200, 1.2, "images/ork_1.png"),
       new Enemy(this.ctx, this, 2350, 330, 20, 300, 200, 0.9, "images/ork_1.png"),
       new Enemy(this.ctx, this, 2850, 330, 20, 300, 200, 1, "images/ork_1.png"),
-      new Enemy(this.ctx, this, 3350, 295, 26, 320, 250, 1.5, "images/troll_1.png"),
+      new Enemy(this.ctx, this, 3350, 293, 26, 320, 250, 1.5, "images/troll_1.png"),
       new Enemy(this.ctx, this, 3850, 330, 20, 300, 200, 1, "images/ork_1.png"),
       new Enemy(this.ctx, this, 4350, 330, 20, 300, 200, 1.2, "images/ork_1.png"),
       new Enemy(this.ctx, this, 4850, 330, 20, 300, 200, 0.9, "images/ork_1.png"),
       new Enemy(this.ctx, this, 5350, 330, 20, 300, 200, 1, "images/ork_1.png"),
-      new Enemy(this.ctx, this, 5850, 295, 20, 320, 250, 1.7, "images/troll_1.png"),
+      new Enemy(this.ctx, this, 5850, 293, 20, 320, 250, 1.7, "images/troll_1.png"),
 
-      // new Enemy(this.ctx, this, 6850, 330, 20),
-      // new Enemy(this.ctx, this, 7350, 330, 20),
-      // new Enemy(this.ctx, this, 7850, 330, 20),
-      // new Enemy(this.ctx, this, 8350, 330, 20),
-      // new Enemy(this.ctx, this, 8850, 330, 20),
-      // new Enemy(this.ctx, this, 9350, 330, 20),
-      // new Enemy(this.ctx, this, 9850, 330, 20),
-      // new Enemy(this.ctx, this, 10350, 330, 20),
-      // new Enemy(this.ctx, this, 10850, 330, 20),
-      // new Enemy(this.ctx, this, 11350, 330, 20),
+      new Enemy(this.ctx, this, 6850, 330, 20, 300, 200, 1.3, "images/ork_1.png"),
+      new Enemy(this.ctx, this, 7350, 330, 20, 300, 200, 1.4, "images/ork_1.png"),
+      new Enemy(this.ctx, this, 7850, 330, 20, 300, 200, 1.5, "images/ork_1.png"),
+      new Enemy(this.ctx, this, 8350, 330, 20, 300, 200, 1.6, "images/ork_1.png"),
+      new Enemy(this.ctx, this, 8850, 293, 26, 320, 250, 2, "images/troll_1.png"),
+      new Enemy(this.ctx, this, 9350, 330, 20, 300, 200, 1.3, "images/ork_1.png"),
+      new Enemy(this.ctx, this, 9850, 330, 20, 300, 200, 1.5, "images/ork_1.png"),
+      new Enemy(this.ctx, this, 10350, 330, 20, 300, 200, 1.3, "images/ork_1.png"),
+      new Enemy(this.ctx, this, 10850, 330, 20, 300, 200, 1.4, "images/ork_1.png"),
+      new Enemy(this.ctx, this, 11350, 293, 26, 320, 250, 2, "images/troll_1.png"),
     ];
     this.healthbar = new Healthbar(this.ctx, this.player);
     this.intervalId = null;
@@ -36,7 +36,7 @@ class Game {
     this.music = new Audio();
     this.music.src = "audio/background_music.mp3";
     this.music.loop = true;
-    this.music.volume = 0.4;
+    this.music.volume = 0.3;
     this.music.play();
 
     this.enemyDeadSound = new Audio();
@@ -142,13 +142,14 @@ class Game {
     if (this.enemies.every((enemy) => enemy.health <= 0)) {
       restartBtn.style.display = 'block'
       this.endGame();
+      this.player.upgradeSound.play();
     }
   }
 
   endGame() {
     clearInterval(this.intervalId);
     this.intervalId = null;
-    this.ctx.font = "100px pixelFont";
+    this.ctx.font = "120px pixelFont";
     this.ctx.fillStyle = "#84853d";
     this.ctx.textAlign = "center";
     this.ctx.fillText(

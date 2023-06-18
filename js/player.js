@@ -14,9 +14,14 @@ class Player {
     // this.health3 = 25;
 
     this.imageA = new Image();
-    this.imageA.src = "images/archer.png";
-    this.imageA.width = 70;
+    this.imageA.src = "images/archer_1.png";
+    this.imageA.width = 100;
     this.imageA.height = 90;
+
+    this.imageB = new Image();
+    this.imageB.src = "images/knigtht_1.png";
+    this.imageB.width = 90;
+    this.imageB.height = 120;
 
     this.image2 = new Image();
     this.image2.src = "images/tower_2.png";
@@ -53,28 +58,56 @@ class Player {
       this.ctx.drawImage(this.image, this.x, this.y, this.width, this.height);
       this.ctx.drawImage(
         this.imageA,
-        140,
+        130,
         380,
         this.imageA.width,
         this.imageA.height
+      );
+      this.ctx.drawImage(
+        this.imageB,
+        127,
+        181,
+        this.imageB.width,
+        this.imageB.height
       );
     } else if (this.isReady && this.strength >= 7 && this.strength < 9) {
       this.ctx.drawImage(this.image2, this.x, this.y, this.width, this.height);
       this.ctx.drawImage(
         this.imageA,
-        140,
+        130,
         380,
         this.imageA.width,
         this.imageA.height
+      );
+      this.ctx.drawImage(
+        this.imageB,
+        123,
+        176,
+        this.imageB.width,
+        this.imageB.height
       );
     } else {
       this.ctx.drawImage(this.image3, this.x, this.y, this.width, this.height);
       this.ctx.drawImage(
         this.imageA,
-        140,
+        130,
         380,
         this.imageA.width,
         this.imageA.height
+      );
+      this.ctx.drawImage(
+        this.imageB,
+        95,
+        175,
+        this.imageB.width,
+        this.imageB.height
+      );
+      this.ctx.drawImage(
+        this.imageB,
+        152,
+        175,
+        this.imageB.width,
+        this.imageB.height
       );
     }
     this.drawGold();
